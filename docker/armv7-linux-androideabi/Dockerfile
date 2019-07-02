@@ -15,7 +15,12 @@ RUN apt-get update && \
     autoconf \
     make \
     file \
-    binutils
+    binutils \
+    # Clang is needed in order for the Rust bindgen to work.
+    # cf. https://github.com/rust-embedded/cross/issues/174
+    llvm-3.9-dev libclang-3.9-dev clang-3.9 \
+    libc6-dev-i386 && \
+    apt-get clean
 
 COPY xargo.sh /
 RUN bash /xargo.sh
