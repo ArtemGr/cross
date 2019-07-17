@@ -22,23 +22,23 @@ RUN apt-get update && \
     libc6-dev-i386 && \
     apt-get clean
 
-COPY xargo.sh /
-RUN bash /xargo.sh
+#COPY xargo.sh /
+#RUN bash /xargo.sh
 
 COPY android-ndk.sh /
 RUN bash /android-ndk.sh arm 21
 ENV PATH=$PATH:/android-ndk/bin
 
-COPY android-system.sh /
-RUN bash /android-system.sh arm
+#COPY android-system.sh /
+#RUN bash /android-system.sh arm
 
-COPY qemu.sh /
-RUN bash /qemu.sh arm android
+#COPY qemu.sh /
+#RUN bash /qemu.sh arm android
 
-COPY openssl.sh /
-RUN bash /openssl.sh android-armv7 arm-linux-androideabi-
+#COPY openssl.sh /
+#RUN bash /openssl.sh android-armv7 arm-linux-androideabi-
 
-RUN cp /android-ndk/sysroot/usr/lib/libz.so /system/lib/
+#RUN cp /android-ndk/sysroot/usr/lib/libz.so /system/lib/
 
 # Libz is distributed in the android ndk, but for some unknown reason it is not
 # found in the build process of some crates, so we explicit set the DEP_Z_ROOT
